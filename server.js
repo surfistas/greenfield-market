@@ -33,7 +33,10 @@ app.use("/users", Users);
 //categories
 var Category = require("./routes/categories.js");
 app.use("/", Category);
+//product
+var Product = require("./routes/products.js");
+app.use("/", Product);
 //listen
 app.listen(port, () => {
-  console.log("Server is runing on port: " + port);
+  console.log("Server is runing on port: http://localhost:" + port);
 });
