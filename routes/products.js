@@ -26,6 +26,16 @@ products.get("/getProduct",(req,res) => {
     })
 })
 
+products.post('/getProductsWithCategory', (req, res) => {
+    Product.find(req.body,(err,result) => {
+        if (err) {
+            res.send(err)
+        } else {
+            res.send(result)
+        }
+    })
+})
+
 // products.get("/products", function(req, res) {
 //     console.log("hello")
 //         Product.find({}, function(err, products){

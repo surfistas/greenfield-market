@@ -12,4 +12,15 @@ categories.post("/categories", (req,res)=> {
     })
 })
 
+categories.get("/getCategory",(req,res) => {
+    Category.find({},(err,result) => {
+        // console.log(req)
+        if (err) {
+            res.send(err)
+        } else {
+            res.send(result)
+        }
+    })
+})
+
 module.exports = categories;

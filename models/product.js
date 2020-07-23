@@ -16,7 +16,7 @@ const data = {
         maxlength: 32
     },
     category: {
-        type: String
+        type:String
     },
     quantity: {
         type: Number
