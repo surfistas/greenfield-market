@@ -29,6 +29,6 @@ const data = {
         type: String,
     }
 }
-const productSchemas = new Schema (data);
-module.exports = Product = new mongoose.model("products",productSchemas);
+const productSchemas = new Schema(data);
+module.exports = Product = new mongoose.model("Product",productSchemas);
 

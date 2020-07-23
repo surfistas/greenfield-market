@@ -17,10 +17,6 @@ mongoose.connect("mongodb://localhost:27017/test", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-app.get("*", (req, res) => {
-  let pathToJoin = path.join(__dirname, "client/build/index.html");
-  res.sendFile(pathToJoin);
-});
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
@@ -34,8 +30,16 @@ app.use("/users", Users);
 var Category = require("./routes/categories.js");
 app.use("/", Category);
 //product
-var Product = require("./routes/products.js");
+var Product = require("./routes/products");
+
 app.use("/", Product);
+
+app.get("*", (req, res) => {
+  let pathToJoin = path.join(__dirname, "client/build/index.html");
+  res.sendFile(pathToJoin);
+});
+
+
 //listen
 app.listen(port, () => {
   console.log("Server is runing on port: http://localhost:" + port);

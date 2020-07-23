@@ -25,13 +25,13 @@ export default class cart extends React.Component {
         
 
         return (
-        //     <div>
-        //         {this.state.product.map((prod, index) => {
-        //             return <Oneproduct prod={prod} key={index} index={index} />;
-        //   })
-        // }
-        //     </div>
-        <h1>Hello</h1>
+            <div>
+                {this.state.product.map((prod, index) => {
+                    return <Oneproduct prod={prod} key={index} index={index} />;
+                })
+            }
+            </div>
+
         )
     }
 }
