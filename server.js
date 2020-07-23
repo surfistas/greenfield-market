@@ -28,10 +28,18 @@ var Users = require("./routes/Users.js");
 app.use("/api/users", Users);
 //categories
 var Category = require("./routes/categories.js");
-app.use("/api/categories", Category);
+app.use("/", Category);
 //product
-var Product = require("./routes/products.js");
-app.use("/api/products", Product);
+var Product = require("./routes/products");
+
+app.use("/", Product);
+
+app.get("*", (req, res) => {
+  let pathToJoin = path.join(__dirname, "client/build/index.html");
+  res.sendFile(pathToJoin);
+});
+
+
 //listen
 app.get("*", (req, res) => {
   let pathToJoin = path.join(__dirname, "client/build/index.html");

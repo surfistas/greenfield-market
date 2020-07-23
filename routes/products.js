@@ -1,30 +1,44 @@
-const express = require("express");
+const express    = require("express");
+const mongoose = require("mongoose")
 const products = express.Router();
 const Product = require("../models/product.js");
 const cors = require("cors");
-const { response } = require("express");
+const {getList} = require('../controllers/products.js')
 products.use(cors());
 
-products.post("/postproduct", (req, res) => {
-  Product.create(req.body)
-    .then((product) => {
-      res.json(product + " created product");
+products.post("/products", (req,res)=> {
+   
+    Product.create(req.body).then((product) => {
+        res.json(product + ' created product')
+    }).catch((err)=>{
+        res.send("error: " + err)
     })
-    .catch((err) => {
-      res.send("error: " + err);
-    });
-});
-products.get("/getproducts", function (req, res) {
-  Product.find({}, function (err, result) {
-    if (err) {
-      res.send(err);
-    } else {
-      res.send(result);
-    }
-  });
-});
-// products.get("/list/all", (req, res) => {
-//         Product.find().then((err, products) => {
+})
+
+
+products.get("/getProduct",(req,res) => {
+    Product.find({},(err,result) => {
+        if (err) {
+            res.send(err)
+        } else {
+            res.send(result)
+        }
+    })
+})
+
+products.post('/getProductsWithCategory', (req, res) => {
+    Product.find(req.body,(err,result) => {
+        if (err) {
+            res.send(err)
+        } else {
+            res.send(result)
+        }
+    })
+})
+
+// products.get("/products", function(req, res) {
+//     console.log("hello")
+//         Product.find({}, function(err, products){
 //                 if (err) {
 //                     return res.status(400).json({
 //                         error: "product not found"
