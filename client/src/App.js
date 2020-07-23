@@ -6,7 +6,7 @@ import Register from "./components/Register.jsx";
 import Header from "./components/header.jsx";
 import Body from "./components/body.jsx";
 import Footer from "./components/footer.jsx"
-
+import Page from './components/Page.jsx'
 
 class App extends Component {
   render() {
@@ -19,6 +19,8 @@ class App extends Component {
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/profile" component={Profile} />
+            <Route exact path="/:product" component={Page} />
+
           </div>
           <Footer />
         </div>
