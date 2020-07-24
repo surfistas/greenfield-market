@@ -1,11 +1,15 @@
-import React from 'react'
-class Page extends React.Component {
+import React,{Component} from 'react';
+import Listproduct from './body/listProduct.jsx'
+export default class Page extends Component {
     constructor(props) {
         super(props)
-        console.log(props)
+        
     }
     render(){
-        return(<div>Hello</div>)
+        console.log('page',this.props.match.params.product)
+        return(
+            <div><Listproduct category={this.props.match.params.product}/> </div>
+            
+        )
     }
 }
-export default Page
