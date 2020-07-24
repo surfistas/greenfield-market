@@ -5,8 +5,9 @@ import Oneproduct from './oneproduct.jsx'
 export default class Listproduct extends React.Component {
     constructor(props){
         super(props);
+        console.log('listproduct '+ this.props )
         this.state = {
-            product: []
+            category : []     
         }
     }
 
@@ -15,10 +16,10 @@ export default class Listproduct extends React.Component {
       }
 
     getData() {
-        axios.get("/getProduct").then((result) => {
-          this.setState({ product: result.data });
-          console.log(this.state.product)
-        });
+        axios.post("/getProductsWithCategory",{category:this.props.category}).then((result) => {
+            this.setState({ category: result.data });
+            console.log('here',result.data)
+            });
 
     }
 
@@ -27,7 +28,7 @@ export default class Listproduct extends React.Component {
 
         return (
             <div>
-                {this.state.product.map((prod, index) => {
+                {this.state.category.map((prod, index) => {
                     return <Oneproduct prod={prod} key={index} index={index} />;
                 })}
             </div>
