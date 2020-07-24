@@ -29,7 +29,8 @@ export default class Categories extends React.Component {
             <div>
                 {this.state.category.map((cat, index) => {
                     return <Onecategory cat={cat} key={index} index={index} />;
-                })}
+                })
+                }
             </div>
         )
     }
