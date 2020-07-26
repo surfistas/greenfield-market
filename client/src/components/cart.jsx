@@ -1,5 +1,6 @@
 import React from "react";
-import { Button} from "react-bootstrap";
+import {Button} from "react-bootstrap";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 
@@ -12,9 +13,7 @@ import axios from "axios";
           totalPrice : 0,
           result : 0
         }
-    }
-    // componentDidMount () {this.handleAdding()}
-    
+    }    
     componentDidMount() {
       this.handleShowing()
     }
@@ -52,7 +51,7 @@ import axios from "axios";
    
     render() {
         return (
-            <div>
+            <div className="cart">
             <h1 className="cart">Cart</h1>
             <div></div>
             <table className="table table-borderless table-stripped">
@@ -83,12 +82,12 @@ import axios from "axios";
                   <td></td>
                   <td></td>
                   <td>Total to Pay</td>
-                  <td>sum</td>
+                  <td></td>
                 </tr>
+                <Button variant="outline-success payment" style={{marginRight:50}}>Payment</Button>
               </tfoot>
             </table>
             {/* <div onChange={this.calculateTotal}></div> */}
-            <Button variant="success" >Payment</Button>
             </div>
         )
     }   
