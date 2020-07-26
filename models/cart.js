@@ -1,12 +1,10 @@
 const mongoose = require('mongoose');
 
 const CartSchema = new mongoose.Schema({
-    products : {
-        imageUrl : String,
-        name : String,
-        price : Number,
-        amount : Number,
-    },
+    productName : String,
+    productPrice : Number, 
+    quantity : Number,
+    total : Number
   });
 
   const Cart = mongoose.model('Cart', CartSchema);
