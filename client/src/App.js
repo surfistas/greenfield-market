@@ -8,6 +8,7 @@ import Body from "./components/body.jsx";
 import Footer from "./components/footer.jsx"
 import Page from './components/Page.jsx'
 import Cart from './components/cart.jsx'
+import ThankYouPage from "./components/body/ThankYou.jsx";
 // import Switch from "react-bootstrap/esm/Switch";
 
 
@@ -23,7 +24,6 @@ class App extends Component {
 
   }
 
- 
  
   logState () {
     localStorage.loggedIn = true
@@ -45,6 +45,8 @@ class App extends Component {
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/categories/:product" component={Page} />
             <Route exact path="/Cart" component={Cart}/>
+            <Route exact path="/ThankYou" component={ThankYouPage}/>
+
 
           </div>
           <Footer />

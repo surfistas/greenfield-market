@@ -4,14 +4,15 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 
+
+
  export default class Cart extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
           products : [],
-          totalPrice : 0,
-          result : 0
+          totalPrice : []
         }
     }    
     componentDidMount() {
@@ -43,11 +44,12 @@ import axios from "axios";
             })
         }
 
-    calculateTotal () {
-      console.log('prod price',this.state.productPrice)
-      console.log('result', this.state.result)
-      this.setState({result : this.state.result + this.state.productPrice})
-    }
+    // calculateTotal () {
+    //   var price = document.getElementById('price').getAttribute("value")
+    //   console.log('price',price)
+    //   eval(price)
+    // }
+
    
     render() {
         return (
@@ -69,9 +71,9 @@ import axios from "axios";
                     return (
                   <tr >
                   <td>{prod.productName}</td> 
-                  <td>{prod.productPrice}</td>
+                  <td>{prod.productPrice + ' TND'}</td>
                   <td>{prod.quantity}</td>
-                  <td>{prod.productPrice * prod.quantity}</td>
+                  <td id="price" value={prod.productPrice * prod.quantity}>{prod.productPrice * prod.quantity + ' TND'}</td>
                   <td><Button variant="outline-danger" onClick={this.handleRemove}>Delete</Button></td>
                   </tr>
                   )
@@ -81,13 +83,22 @@ import axios from "axios";
                 <tr>
                   <td></td>
                   <td></td>
+                  <td>Delivery</td>
+                  <td>7.000 TND</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
                   <td>Total to Pay</td>
                   <td></td>
                 </tr>
-                <Button variant="outline-success payment" style={{marginRight:50}}>Payment</Button>
+                
               </tfoot>
             </table>
             {/* <div onChange={this.calculateTotal}></div> */}
+            <Button variant="outline-success" className="float-right" style={{marginRight:120 , width: 150}}>
+              <Link to="/ThankYou">Click to Confirm</Link>
+              </Button>
             </div>
         )
     }   

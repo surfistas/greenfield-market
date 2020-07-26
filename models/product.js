@@ -10,7 +10,7 @@ const data = {
         maxlength: 32
     },
     price: {
-        type: Number,
+        type: String,
         trim: true,
         required: true,
         maxlength: 32
