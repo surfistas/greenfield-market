@@ -1,25 +1,45 @@
 import React, { Component } from "react";
 import { Card, Button } from "react-bootstrap";
+import Login from "../Login";
+import axios from "axios"
 
 export default class Oneproduct extends Component {
+    constructor(props){
+      super(props);
+      this.state = {
+        loggedIn : this.props.loggedIn
+      }
+     
+    }
+  
+  handleProduct () {
+    axios.post("/cart" , {productName:this.props.prod.name, productPrice: this.props.prod.price, quantity : this.props.prod.quantity } )
+    .then((result) => {
+      console.log(result)
+    })
+      .catch(err => {
+        console.error(err)
+    })
+  }
+
   render() {
+    console.log(this.props)
     return (
       <div>
         <Card style={{ width: "18rem" }}>
           <Card.Img
             variant="top"
-            src="https://images.pexels.com/photos/4879363/pexels-photo-4879363.jpeg"
+            src={this.props.prod.photoUrl}
           ></Card.Img>
           <Card.Body>
-            <Card.Title>Card Title</Card.Title>
-            <Card.Text>
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </Card.Text>
-            <Button variant="primary">Go somewhere</Button>
+            <Card.Title>{this.props.prod.name}</Card.Title>
+            <Card.Text>{this.props.prod.quantity}</Card.Text>
+            <Card.Text>{this.props.prod.price}</Card.Text>
+            <Button variant="primary" onClick={this.handleProduct.bind(this)}>Add to Cart</Button>
           </Card.Body>
         </Card>
       </div>
     );
-  }
+  } 
 }
+ 

@@ -16,11 +16,7 @@ app.use(express.static("client/build"));
 mongoose.connect("mongodb://localhost:27017/test", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-});
-app.get("*", (req, res) => {
-  let pathToJoin = path.join(__dirname, "client/build/index.html");
-  res.sendFile(pathToJoin);
-});
+}); 
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
@@ -30,10 +26,23 @@ db.once("open", function () {
 //users
 var Users = require("./routes/Users.js");
 app.use("/users", Users);
+//products
+var Product = require("./routes/products.js");
+app.use("/", Product);
 //categories
 var Category = require("./routes/categories.js");
-app.use("/", Category);
+app.use("/", Category); 
+//cart
+var Cart = require("./routes/carts.js");
+app.use("/", Cart);
+
+app.get("*", (req, res) => {
+  let pathToJoin = path.join(__dirname, "client/build/index.html");
+  res.sendFile(pathToJoin);
+});
+
+
 //listen
 app.listen(port, () => {
-  console.log("Server is runing on port: " + port);
+  console.log("Server is runing on port: http://localhost:" + port);
 });
