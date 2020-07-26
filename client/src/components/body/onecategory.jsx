@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import axios from "axios";
-import { Card } from "react-bootstrap";
+import axios from 'axios';
+import { Card, CardImg } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export default class Onecategory extends Component {
@@ -19,15 +19,12 @@ export default class Onecategory extends Component {
   }
 
   render() {
+    console.log(this.props.cat.imageUrl)
     return (
       <div>
-        <Link
-          to={`/categories/${this.props.cat.name}`}
-          className="nav-link"
-          onClick={this.onChange.bind(this)}
-        >
-          <Card style={{ width: "18rem" }}>
-            <Card.Body>
+        <Link to={`/categories/${this.props.cat.name}`} className='nav-link' onClick={this.onChange.bind(this)}>
+          <Card className="category">
+            <Card.Body style={{backgroundImage:`url(${this.props.cat.imgUrl})`, height : 500, backgroundSize : 'cover'}}>
               <Card.Title>{this.props.cat.name}</Card.Title>
             </Card.Body>
           </Card>
@@ -36,3 +33,4 @@ export default class Onecategory extends Component {
     );
   }
 }
+ 

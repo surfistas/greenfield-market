@@ -17,19 +17,19 @@ users.post("/register", (req, res) => {
     email: req.body.email,
   })
     .then((user) => {
-      if (!user) {
+      if (user === null) {
         bcrypt.hash(req.body.password, 10, (err, hash) => {
           req.body.password = hash;
           User.create(req.body)
             .then((user) => {
-              res.json({ status: user.email + " Registered!" });
+              res.send(true);
             })
             .catch((err) => {
-              res.send("error: " + err);
+              res.send(false);
             });
         });
       } else {
-        res.json({ error: "User already exists" });
+        res.json(false);
       }
     })
     .catch((err) => {
@@ -42,7 +42,7 @@ users.post("/login", (req, res) => {
     email: req.body.email,
   })
     .then((user) => {
-      if (user) {
+      if (user !== null) {
         if (bcrypt.compareSync(req.body.password, user.password)) {
           const payload = {
             _id: user._id,

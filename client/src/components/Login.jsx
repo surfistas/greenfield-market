@@ -14,16 +14,19 @@ class Login extends React.Component {
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
+
   onSubmit(e) {
     e.preventDefault();
     const user = {
       email: this.state.email,
       password: this.state.password,
     };
+    console.log("outside", this.props.history);
     login(user).then((res) => {
-      if (res) {
+      console.log(res);
+      if (!res.error) {
         this.props.history.push("/profile");
-        console.log(this.props.history);
+        localStorage.loggedIn = true;
       }
     });
   }

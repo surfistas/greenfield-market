@@ -5,9 +5,17 @@ import Navcategories from "../header/navcategories";
 export default class Navbart extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      loggedIn: true,
+      changed: false,
+    };
   }
-
+  componentDidUpdate() {
+    if (this.state.loggedIn == "false") {
+      this.setState({ changed: true });
+      this.state.loggedIn = true;
+    }
+  }
   render() {
     return (
       <div>
@@ -16,24 +24,47 @@ export default class Navbart extends React.Component {
             <Link to="/">Greenfield-market</Link>
           </Navbar.Brand>
           <Nav className="mr-auto">
+            {localStorage.loggedIn == "false" ? (
+              <div>
+                <li className="nav-item">
+                  <Link to="/login" className="nav-link">
+                    Login
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/register" className="nav-link">
+                    Register
+                  </Link>
+                </li>
+              </div>
+            ) : (
+              <h5>Welcome to our Market</h5>
+            )}
+
+            {localStorage.loggedIn == "true" ? (
+              <li className="nav-item">
+                <Link
+                  onClick={() => {
+                    localStorage.setItem("usertoken", "");
+                    localStorage.setItem("loggedIn", "false");
+                    this.setState({ loggedIn: false });
+                  }}
+                  to="/"
+                  className="nav-link"
+                >
+                  Logout
+                </Link>
+              </li>
+            ) : null}
             <li className="nav-item">
               <Link to="/Cart" className="nav-link">
-                Cart
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/login" className="nav-link">
-                Login
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/register" className="nav-link">
-                Register
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
               </Link>
             </li>
           </Nav>
           <Form inline>
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+
             <Button variant="outline-info">Search</Button>
           </Form>
         </Navbar>

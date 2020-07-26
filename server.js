@@ -25,15 +25,16 @@ db.once("open", function () {
 });
 //users
 var Users = require("./routes/Users.js");
-app.use("/api/users", Users);
+app.use("/users", Users);
+//products
+var Product = require("./routes/products.js");
+app.use("/", Product);
 //categories
 var Category = require("./routes/categories.js");
 app.use("/", Category);
-//product
-var Product = require("./routes/products");
-
-app.use("/", Product);
-
+//cart
+var Cart = require("./routes/carts.js");
+app.use("/", Cart);
 
 //listen
 app.get("*", (req, res) => {
