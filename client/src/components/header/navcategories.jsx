@@ -36,7 +36,7 @@ export default class Navcategories extends Component {
 
     render() {
         return (
-            <div className="mr-auto navbar-nav" >
+            <div className="mr-auto navbar-nav">
                 {this.state.category.map((cat, index) => {
                     return <Onenavcategory cat={cat} key={index} index={index}  onChanges={this.onChange}/>;
                 })}

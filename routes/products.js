@@ -2,9 +2,12 @@ const express    = require("express");
 const mongoose = require("mongoose")
 const products = express.Router();
 const Product = require("../models/product.js");
+const Cart = require ("../models/cart.js")
 const cors = require("cors");
 const {getList} = require('../controllers/products.js')
 products.use(cors());
+
+
 
 products.post("/products", (req,res)=> {
    
@@ -14,8 +17,6 @@ products.post("/products", (req,res)=> {
         res.send("error: " + err)
     })
 })
-
-
 products.get("/getProduct",(req,res) => {
     Product.find({},(err,result) => {
         if (err) {
@@ -25,7 +26,6 @@ products.get("/getProduct",(req,res) => {
         }
     })
 })
-
 products.post('/getProductsWithCategory', (req, res) => {
     Product.find(req.body,(err,result) => {
         if (err) {
@@ -35,16 +35,14 @@ products.post('/getProductsWithCategory', (req, res) => {
         }
     })
 })
+products.post('/cart', (req, res) => {
+    console.log('product',req.body)
+    Cart.create({productName : req.body.productName, productPrice: req.body.productPrice, quantity: req.body.quantity}).then((product) => {
+        res.send(product) 
+    })
+    .catch((err) => {
+        res.send(err)
+    })
+})
 
-// products.get("/products", function(req, res) {
-//     console.log("hello")
-//         Product.find({}, function(err, products){
-//                 if (err) {
-//                     return res.status(400).json({
-//                         error: "product not found"
-//                     });
-//                 }
-//                 res.json(products);
-//             })
-//         });
 module.exports = products;

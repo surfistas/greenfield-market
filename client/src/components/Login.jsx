@@ -7,6 +7,7 @@ class Login extends React.Component {
     this.state = {
       email: "",
       password: "",
+
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -14,16 +15,17 @@ class Login extends React.Component {
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
+  
   onSubmit(e) {
     e.preventDefault();
     const user = {
       email: this.state.email,
       password: this.state.password,
     };
+    console.log('outside', this.props.history)
     login(user).then((res) => {
       if (res) {
         this.props.history.push("/profile");
-        console.log(this.props.history);
       }
     });
   }
@@ -59,6 +61,7 @@ class Login extends React.Component {
               <button
                 type="submit"
                 className="btn btn-lg btn-primary btn-block"
+               
               >
                 Log in
               </button>

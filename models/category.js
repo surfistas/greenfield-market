@@ -8,7 +8,8 @@ const data = {
         required: true,
         maxlength: 32,
         unique: true
-    }
+    },
+    imgUrl : String
 }
 
 const categoriesSchemas = new Schema (data);
