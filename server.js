@@ -34,11 +34,6 @@ var Product = require("./routes/products");
 
 app.use("/", Product);
 
-app.get("*", (req, res) => {
-  let pathToJoin = path.join(__dirname, "client/build/index.html");
-  res.sendFile(pathToJoin);
-});
-
 
 //listen
 app.get("*", (req, res) => {
