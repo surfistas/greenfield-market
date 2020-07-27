@@ -17,7 +17,6 @@ export default class Categories extends React.Component {
       getCategories() {
         axios.get("/getCategory").then((result) => {
           this.setState({ category: result.data });
-          console.log(this.state.category[0].name)
         });
 
     }
