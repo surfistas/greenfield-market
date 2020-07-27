@@ -3,54 +3,49 @@ import {Button} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+export default class Cart extends React.Component {
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      products: [],
+      totalPrice: 0,
+      result: 0,
+    };
+  }
+  // componentDidMount () {this.handleAdding()}
 
+  componentDidMount() {
+    this.handleShowing();
+  }
+  componentDidUpdate() {
+    axios.get("/addTocart").then((res) => {
+      this.setState({ products: res.data });
+    });
+  }
+  handleShowing() {
+    axios
+      .get("/addTocart")
+      .then((res) => {
+        this.setState({ products: res.data });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
 
- export default class Cart extends React.Component {
-    constructor(props) {
-        super(props);
+  handleRemove(event) {
+    event.preventDefault();
+    axios
+      .delete("/cart")
+      .then((res) => {
+        console.log("deleted");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
 
-        this.state = {
-          products : [],
-          totalPrice : []
-        }
-    }    
-    componentDidMount() {
-      this.handleShowing()
-    }
-    
-    handleShowing () {
-      console.log('cart1',this.props)
-      axios.get("/addTocart")
-        .then((res) => {
-          console.log('data',res.data.tot)
-          this.setState({products : res.data})
-          console.log(this.state.products)
-        })
-        .catch((err) => {
-          console.error(err)
-        })
-    } 
-
-    handleRemove (event) { 
-      event.preventDefault()
-            axios.delete("/cart")
-            .then((res) => {
-                console.log(res.data)
-                console.log('deleted')
-            })
-            .catch((err) => {
-                console.error(err)
-            })
-        }
-
-    // calculateTotal () {
-    //   var price = document.getElementById('price').getAttribute("value")
-    //   console.log('price',price)
-    //   eval(price)
-    // }
-
-   
     render() {
         return (
             <div className="cart">
@@ -97,7 +92,6 @@ import axios from "axios";
                 
               </tfoot>
             </table>
-            {/* <div onChange={this.calculateTotal}></div> */}
             <Button variant="outline-success" className="float-right" style={{marginRight:120 , width: 150}}>
               <Link to="/ThankYou">Click to Confirm</Link>
               </Button>
@@ -105,4 +99,3 @@ import axios from "axios";
         )
     }   
 }
-

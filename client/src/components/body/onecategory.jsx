@@ -3,20 +3,19 @@ import axios from 'axios';
 import { Card, CardImg } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-
 export default class Onecategory extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      category : []
-    }
+      category: [],
+    };
   }
-  onChange( ) {
-      axios.post("/getProductsWithCategory",{category:this.props.cat.name}).then((result) => {
-          this.setState({ category: result.data });
-          console.log('here',result.data)
-        });
-
+  onChange() {
+    axios
+      .post("/getProductsWithCategory", { category: this.props.cat.name })
+      .then((result) => {
+        this.setState({ category: result.data });
+      });
   }
 
   render() {

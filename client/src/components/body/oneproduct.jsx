@@ -33,8 +33,8 @@ export default class Oneproduct extends Component {
           ></Card.Img>
           <Card.Body>
             <Card.Title>{this.props.prod.name}</Card.Title>
-            <Card.Text>{this.props.prod.quantity}</Card.Text>
-            <Card.Text>{this.props.prod.price +' TND'}</Card.Text>
+            <Card.Text>{this.props.prod.quantity +"KG"}</Card.Text>
+            <Card.Text>{this.props.prod.price +' TND /KG'}</Card.Text>
             <Button variant="outline-dark" onClick={this.handleProduct.bind(this)}>Add to Cart</Button>
           </Card.Body>
         </Card>

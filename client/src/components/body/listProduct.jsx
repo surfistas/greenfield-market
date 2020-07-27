@@ -1,27 +1,27 @@
-import React from 'react';
-import axios from 'axios';
-import Oneproduct from './oneproduct.jsx'
+import React from "react";
+import axios from "axios";
+import Oneproduct from "./oneproduct.jsx";
 
 export default class Listproduct extends React.Component {
-    constructor(props){
-        super(props);
-        console.log('listproduct '+ this.props )
-        this.state = {
-            category : []     
-        }
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      category: [],
+    };
+  }
 
-    componentDidMount() {
-        this.getData();
-      }
+  componentDidMount() {
+    this.getData();
+  }
 
-    getData() {
-        axios.post("/getProductsWithCategory",{category:this.props.category}).then((result) => {
-            this.setState({ category: result.data });
-            console.log('here',result.data)
-            });
+  getData() {
+    axios
+      .post("/getProductsWithCategory", { category: this.props.category })
+      .then((result) => {
+        this.setState({ category: result.data });
+      });
+  } 
 
-    }
 
     render() {
         
@@ -35,4 +35,3 @@ export default class Listproduct extends React.Component {
         )
     }
 }
-

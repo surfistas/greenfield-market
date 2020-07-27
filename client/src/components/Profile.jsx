@@ -1,5 +1,7 @@
 import React from 'react';
-import jwt_decode from 'jwt-decode'
+import jwt_decode from 'jwt-decode';
+import { Button } from "react-bootstrap";
+
 
 
 class Profile extends React.Component {
@@ -59,6 +61,10 @@ class Profile extends React.Component {
                             <tr>
                                 <td>Email</td>
                                 <td>{this.state.email}</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><Button variant="outline-dark" >Edit</Button></td>
                             </tr>
                         </tbody>
                     </table>
