@@ -20,9 +20,7 @@ export default class Listproduct extends React.Component {
       .then((result) => {
         this.setState({ category: result.data });
       });
-  }
-
-  render() {
+  }  render() {
     return (
       <div>
         {this.state.category.map((prod, index) => {
@@ -31,4 +29,5 @@ export default class Listproduct extends React.Component {
       </div>
     );
   }
+
 }

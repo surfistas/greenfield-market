@@ -31,8 +31,8 @@ class App extends React.Component {
   }
   logOut() {
     localStorage.loggedIn = false;
-  }
 
+  }
   render() {
     return (
       <Router>
