@@ -90,7 +90,9 @@ import axios from "axios";
                   <td></td>
                   <td></td>
                   <td>Total to Pay</td>
-                  <td></td>
+              <td>{this.state.products.reduce((acc, prod) => 
+                acc + (prod.productPrice * prod.quantity) + 7
+              ,0)}</td>
                 </tr>
                 
               </tfoot>
