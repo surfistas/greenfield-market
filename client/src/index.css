@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url('https://images.unsplash.com/photo-1533628635777-112b2239b1c7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80');
 }
 
 code {
@@ -16,4 +17,19 @@ code {
   margin: auto;
   width : 75%;
   background-repeat: no-repeat;
+  box-shadow: 2px black;
 }
+
+.products {
+  margin-left: 10%;
+  display: flex;
+  flex-wrap: wrap-reverse;
+  padding: 25px;
+  text-align: center;
+  font-style: italic;
+}
+
+.cart {
+  border-bottom: black solid 1px;
+}
+

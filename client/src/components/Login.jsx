@@ -1,13 +1,13 @@
 import React from "react";
 import { login } from "./UserFunctions.jsx";
 
+
 class Login extends React.Component {
   constructor() {
     super();
     this.state = {
       email: "",
       password: "",
-
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -15,26 +15,31 @@ class Login extends React.Component {
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
-  
+
   onSubmit(e) {
     e.preventDefault();
     const user = {
       email: this.state.email,
       password: this.state.password,
     };
-    console.log('outside', this.props.history)
+    console.log("outside", this.props.history);
     login(user).then((res) => {
-      if (res) {
+      console.log(res);
+      if (!res.error) {
         this.props.history.push("/profile");
-      }
-    });
-  }
+        localStorage.loggedIn = true;
+        window.location.reload()
+      } 
+        console.log(res.error)
+      })   
+    };
+  
   render() {
     return (
       <div className="container">
         <div className="row">
           <div className="col-md-6 mt-5 mw-auto">
-            <form noValidate onSubmit={this.onSubmit}>
+            <form noValidate onSubmit={this.onSubmit} >
               <h1 className="h3 mb -3 font-weight-normal">PLEASE LOG IN</h1>
               <div className="form-group">
                 <label htmlFor="email">Email Address</label>
@@ -61,7 +66,6 @@ class Login extends React.Component {
               <button
                 type="submit"
                 className="btn btn-lg btn-primary btn-block"
-               
               >
                 Log in
               </button>
