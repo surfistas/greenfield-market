@@ -43,9 +43,9 @@ export default class Navbart extends React.Component {
           </Navbar.Brand>
           <Nav className="mr-auto">
          
-            {localStorage.loggedIn == 'true' ? <li className="nav-item" > <Link to="/login" className="nav-link">Login</Link></li> : <h5>Welcome to our Market</h5> }
-            <li className="nav-item"><Link to="/register" className="nav-link">Register </Link></li>
-            <li className="nav-item"><Link to="/" className="nav-link" onClick={localStorage.loggedIn === false}>Logout</Link></li>
+            {localStorage.loggedIn === 'false' ? <span><li className="nav-item"><Link to="/login" className="nav-link">Login</Link></li> <li className="nav-item"><Link to="/register" className="nav-link">Register </Link></li></span>: <span><h5>Welcome to our Market</h5><li className="nav-item"><Link to="/" className="nav-link" onClick={this.props.logOut}>Logout</Link></li></span> }
+            
+            
             <li className="nav-item">
               <Link to="/Cart" className="nav-link">
               <i class="fa fa-shopping-cart" aria-hidden="true"></i>

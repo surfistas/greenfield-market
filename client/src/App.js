@@ -22,22 +22,20 @@ class App extends Component {
     this.logOut = this.logOut.bind(this)
 
   }
-
- 
- 
   logState () {
     localStorage.loggedIn = true
+    window.location.assign("http://localhost:5000/profile")
   }
   logOut () {
     localStorage.loggedIn = false
+    window.location.assign("http://localhost:5000/")
   }
-
   render() {
     return ( 
       <Router>
         <Switch>
         <div className="App">
-              <Header />
+              <Header logOut={this.logOut}/>
               <Route exact path="/" component={Body} />
           <div className="container">
             <Route exact path="/register" component={Register} />

@@ -25,7 +25,8 @@ class Login extends React.Component {
     console.log('outside', this.props.history)
     login(user).then((res) => {
       if (res) {
-        this.props.history.push("/profile");
+        this.props.logState()
+        // this.props.history.push("/profile");
       }
     });
   }
@@ -34,7 +35,7 @@ class Login extends React.Component {
       <div className="container">
         <div className="row">
           <div className="col-md-6 mt-5 mw-auto">
-            <form noValidate onSubmit={this.onSubmit}>
+            <form noValidate onSubmit={this.onSubmit} >
               <h1 className="h3 mb -3 font-weight-normal">PLEASE LOG IN</h1>
               <div className="form-group">
                 <label htmlFor="email">Email Address</label>
