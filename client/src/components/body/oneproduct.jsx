@@ -26,16 +26,16 @@ export default class Oneproduct extends Component {
     console.log(this.props)
     return (
       <div>
-        <Card style={{ width: "18rem" }}>
+        <Card style={{ width: "18rem", border : "none", backgroundColor: "transparent"}}>
           <Card.Img
             variant="top"
             src={this.props.prod.photoUrl}
           ></Card.Img>
           <Card.Body>
             <Card.Title>{this.props.prod.name}</Card.Title>
-            <Card.Text>{this.props.prod.quantity}</Card.Text>
-            <Card.Text>{this.props.prod.price}</Card.Text>
-            <Button variant="primary" onClick={this.handleProduct.bind(this)}>Add to Cart</Button>
+            <Card.Text>{this.props.prod.quantity +"KG"}</Card.Text>
+            <Card.Text>{this.props.prod.price +' TND /KG'}</Card.Text>
+            <Button variant="outline-dark" onClick={this.handleProduct.bind(this)}>Add to Cart</Button>
           </Card.Body>
         </Card>
       </div>

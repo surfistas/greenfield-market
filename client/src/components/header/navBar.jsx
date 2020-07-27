@@ -25,7 +25,7 @@ export default class Navbart extends React.Component {
           </Navbar.Brand>
           <Nav className="mr-auto">
             {localStorage.loggedIn == "false" ? (
-              <div>
+              <div style={{display:"inherit"}}>
                 <li className="nav-item">
                   <Link to="/login" className="nav-link">
                     Login
@@ -37,9 +37,7 @@ export default class Navbart extends React.Component {
                   </Link>
                 </li>
               </div>
-            ) : (
-              <h5>Welcome to our Market</h5>
-            )}
+            ) : null}
 
             {localStorage.loggedIn == "true" ? (
               <li className="nav-item">
@@ -58,7 +56,7 @@ export default class Navbart extends React.Component {
             ) : null}
             <li className="nav-item">
               <Link to="/Cart" className="nav-link">
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>Cart
               </Link>
             </li>
           </Nav>
@@ -72,12 +70,7 @@ export default class Navbart extends React.Component {
           <Navcategories
             changeCategory={this.props.changeCategory.bind(this)}
           />
-          {/* <Link to="/vegetables" className="nav-link" onClick={this.onChange.bind(this)}>Vegetables</Link>
-        <Link to="/fruits" className="nav-link">Fruits</Link>
-        <Link to="/dairy" className="nav-link">Dairy</Link>
-        <Link to="/meats" className="nav-link">Meats</Link>
-        <Link to="/beverage" className="nav-link">Beverage</Link>
-        <Link to="/pastaAndRice" className="nav-link">Pasta And Rice</Link> */}
+        
         </Navbar>
       </div>
     );

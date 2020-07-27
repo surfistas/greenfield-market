@@ -1,6 +1,7 @@
 import React from "react";
 import { login } from "./UserFunctions.jsx";
 
+
 class Login extends React.Component {
   constructor() {
     super();
@@ -27,10 +28,12 @@ class Login extends React.Component {
       if (!res.error) {
         this.props.history.push("/profile");
         localStorage.loggedIn = true;
-
-      }
-    });
-  }
+        window.location.reload()
+      } 
+        console.log(res.error)
+      })   
+    };
+  
   render() {
     return (
       <div className="container">

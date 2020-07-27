@@ -1,5 +1,6 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import {Button} from "react-bootstrap";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 export default class Cart extends React.Component {
@@ -38,7 +39,6 @@ export default class Cart extends React.Component {
     axios
       .delete("/cart")
       .then((res) => {
-        console.log(res.data);
         console.log("deleted");
       })
       .catch((err) => {
@@ -46,58 +46,56 @@ export default class Cart extends React.Component {
       });
   }
 
-  calculateTotal() {
-    console.log("prod price", this.state.productPrice);
-    console.log("result", this.state.result);
-    this.setState({ result: this.state.result + this.state.productPrice });
-  }
-
-  render() {
-    return (
-      <div>
-        <h1 className="cart">Cart</h1>
-        <div></div>
-        <table className="table table-borderless table-stripped">
-          <thead className="thead-light">
-            <tr>
-              <th>Product Name</th>
-              <th>Price</th>
-              <th>Amount</th>
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.products.map((prod, index) => {
-              return (
+    render() {
+        return (
+            <div className="cart">
+            <h1 className="cart">Cart</h1>
+            <div></div>
+            <table className="table table-borderless table-stripped">
+              <thead className="thead-light">
                 <tr>
-                  <td>{prod.productName}</td>
-                  <td>{prod.productPrice}</td>
-                  <td>{prod.quantity}</td>
-                  <td>{prod.productPrice * prod.quantity}</td>
-                  <td>
-                    <Button
-                      variant="outline-danger"
-                      onClick={this.handleRemove}
-                    >
-                      Delete
-                    </Button>
-                  </td>
+                  <th>Product Name</th>
+                  <th>Price</th>
+                  <th>Amount</th>
+                  <th>Total</th>
                 </tr>
-              );
-            })}
-          </tbody>
-          <tfoot className="tfoot-light">
-            <tr>
-              <td></td>
-              <td></td>
-              <td>Total to Pay</td>
-              <td>sum</td>
-            </tr>
-          </tfoot>
-        </table>
-        {/* <div onChange={this.calculateTotal}></div> */}
-        <Button variant="success">Payment</Button>
-      </div>
-    );
-  }
+             
+              </thead>
+              <tbody>
+                {this.state.products.map((prod, index) => { 
+                    return (
+                  <tr >
+                  <td>{prod.productName}</td> 
+                  <td>{prod.productPrice + ' TND'}</td>
+                  <td>{prod.quantity}</td>
+                  <td id="price" value={prod.productPrice * prod.quantity}>{prod.productPrice * prod.quantity + ' TND'}</td>
+                  <td><Button variant="outline-danger" onClick={this.handleRemove}>Delete</Button></td>
+                  </tr>
+                  )
+                })}        
+              </tbody> 
+              <tfoot className="tfoot-light">
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>Delivery</td>
+                  <td>7.000 TND</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>Total to Pay</td>
+              <td>{this.state.products.reduce((acc, prod) => 
+                acc + (prod.productPrice * prod.quantity) + 7
+              ,0)}</td>
+                </tr>
+                
+              </tfoot>
+            </table>
+            <Button variant="outline-success" className="float-right" style={{marginRight:120 , width: 150}}>
+              <Link to="/ThankYou">Click to Confirm</Link>
+              </Button>
+            </div>
+        )
+    }   
 }

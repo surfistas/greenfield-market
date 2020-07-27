@@ -20,14 +20,18 @@ export default class Listproduct extends React.Component {
       .then((result) => {
         this.setState({ category: result.data });
       });
-  }  render() {
-    return (
-      <div>
-        {this.state.category.map((prod, index) => {
-          return <Oneproduct prod={prod} key={index} index={index} />;
-        })}
-      </div>
-    );
-  }
+  } 
 
+
+    render() {
+        
+
+        return (
+            <div  className="products">
+                {this.state.category.map((prod, index) => {
+                    return <Oneproduct prod={prod} key={index} index={index}  />;
+                })}
+            </div>
+        )
+    }
 }

@@ -7,6 +7,8 @@ import Body from "./components/body.jsx";
 import Footer from "./components/footer.jsx";
 import Page from "./components/Page.jsx";
 import Cart from "./components/cart.jsx";
+import Profile from "./components/Profile.jsx"
+import ThankYouPage from "./components/body/ThankYou.jsx"
 class App extends React.Component {
   // create the category state
   constructor(props) {
@@ -55,13 +57,14 @@ class App extends React.Component {
                 )}
               />
               {/* pass the category as props here */}
-              {/* <Route exact path="/profile" component={Profile} /> */}
+              <Route exact path="/profile" component={Profile} />
               <Route
                 exact
                 path="/categories/:product"
                 component={() => <Page category={this.state.category} />}
               />
               <Route exact path="/Cart" component={Cart} />
+              <Route exact path="/ThankYou" component={ThankYouPage}/>
             </div>
             <Footer />
           </div>
