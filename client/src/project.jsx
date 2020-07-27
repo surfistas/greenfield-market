@@ -1,16 +1,16 @@
-import React from 'react'
-import Header from './maincomponnent/header.jsx'
-import Body from    './maincomponnent/body.jsx'
-import Footer from './maincomponnent/footer.jsx'
+import React from "react";
+import NavBar from "./maincomponnent/header.jsx"; // fix this
+import Body from "./maincomponnent/body.jsx";
+import Footer from "./maincomponnent/footer.jsx";
 
 export default class Project extends React.Component {
-    render() {
-        return (
-            <div>
-                <Header />
-                <Body />
-                <Footer />
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <NavbBar />
+        <Body />
+        <Footer />
+      </div>
+    );
+  }
 }
