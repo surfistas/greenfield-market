@@ -27,9 +27,9 @@ export default class Listproduct extends React.Component {
         
 
         return (
-            <div>
+            <div className='product'>
                 {this.state.category.map((prod, index) => {
-                    return <Oneproduct prod={prod} key={index} index={index} />;
+                    return <Oneproduct prod={prod} key={index} index={index}  />;
                 })}
             </div>
         )
